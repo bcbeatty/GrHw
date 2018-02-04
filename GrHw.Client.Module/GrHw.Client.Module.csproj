@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GrHw.Client.Business.Implementation\GrHw.Client.Business.Implementation.csproj" />
+    <ProjectReference Include="..\GrHw.Client.Business\GrHw.Client.Business.csproj" />
+    <ProjectReference Include="..\GrHw.Client.Domain\GrHw.Client.Domain.csproj" />
+    <ProjectReference Include="..\GrHw.Client.Repository\GrHw.Client.Repository.csproj" />
+    <ProjectReference Include="..\GrHw.Framework.Implementation\GrHw.Framework.Implementation.csproj" />
+    <ProjectReference Include="..\GrHw.Framework\GrHw.Framework.csproj" />
+    <ProjectReference Include="..\GwHw.Client.Repository.Implementation\GwHw.Client.Repository.Implementation.csproj" />
+  </ItemGroup>
+
+</Project>
