@@ -2,7 +2,7 @@
 using GwHw.Client.Repository.Implementation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace GrHw.Person.Tests.Repository
+namespace GrHw.Person.Tests.Client.Repository
 {
     [TestClass]
     public class PersonRepositoryTests
@@ -18,7 +18,7 @@ namespace GrHw.Person.Tests.Repository
         public void Insert_Returns_Item_Success()
         {
             var repo = new PersonRepository();
-            var actual = repo.Insert(new Client.Domain.Person());
+            var actual = repo.Insert(new GrHw.Client.Domain.Person());
             Assert.IsNotNull(actual);
         }
 
@@ -26,7 +26,7 @@ namespace GrHw.Person.Tests.Repository
         public void Update_Returns_Item_Success()
         {
             var repo = new PersonRepository();
-            var actual = repo.Update(new Client.Domain.Person());
+            var actual = repo.Update(new GrHw.Client.Domain.Person());
             Assert.IsNotNull(actual);
         }
 
@@ -34,7 +34,7 @@ namespace GrHw.Person.Tests.Repository
         public void Delete_Success()
         {
             var repo = new PersonRepository();
-            repo.Delete(new Client.Domain.Person());
+            repo.Delete(new GrHw.Client.Domain.Person());
             
         }
     }

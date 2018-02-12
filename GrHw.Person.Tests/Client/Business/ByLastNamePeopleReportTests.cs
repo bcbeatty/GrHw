@@ -4,18 +4,18 @@ using GrHw.Client.Business.Implementation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
-namespace GrHw.Person.Tests.Business
+namespace GrHw.Person.Tests.Client.Business
 {
     [TestClass]
-    public class ByGenderPeopleReportTests
+    public class ByLastNamePeopleReportTests
     {
-        private Mock<ILineProcessor<Client.Domain.Person>> _lineProcessor;
+        private Mock<ILineProcessor<GrHw.Client.Domain.Person>> _lineProcessor;
 
 
         [TestInitialize]
         public void TestInitialize()
         {
-            _lineProcessor = new Mock<ILineProcessor<Client.Domain.Person>>(MockBehavior.Strict);
+            _lineProcessor = new Mock<ILineProcessor<GrHw.Client.Domain.Person>>(MockBehavior.Strict);
         }
 
         private void VerifyAll()
@@ -23,17 +23,17 @@ namespace GrHw.Person.Tests.Business
             _lineProcessor.VerifyAll();
         }
 
-        private ByGenderPeopleReport GetByGenderPeopleReport()
+        private ByLastNamePeopleReport GetByLastNamePeopleReport()
         {
-            return new ByGenderPeopleReport(_lineProcessor.Object);
+            return new ByLastNamePeopleReport(_lineProcessor.Object);
         }
 
         [TestMethod]
-        public void ByDateOfBirthPeopleReport_GetReport_Success()
+        public void ByLastNamePeopleReport_GetReport_Success()
         {
-            var people = new List<Client.Domain.Person>
+            var people = new List<GrHw.Client.Domain.Person>
             {
-                new Client.Domain.Person
+                new GrHw.Client.Domain.Person
                 {
                     LastName = "Beatty",
                     FirstName = "Brian",
@@ -41,7 +41,7 @@ namespace GrHw.Person.Tests.Business
                     DateOfBirth = "3/14/70",
                     FavoriteColor = "Green"
                 },
-                new Client.Domain.Person
+                new GrHw.Client.Domain.Person
                 {
                     LastName = "Smith",
                     FirstName = "Sally",
@@ -51,14 +51,13 @@ namespace GrHw.Person.Tests.Business
                 }
             };
             var expected = "Smith,Sally,F,Purple,3/14/2010\n\r\nBeatty,Brian,M,Green,3/13/1970\n\r\n";
-            _lineProcessor.Setup(m => m.ToLine(It.Is<Client.Domain.Person>(s => s.LastName == people[1].LastName), It.IsAny<char>())).Returns("Smith,Sally,F,Purple,3/14/2010\n");
-            _lineProcessor.Setup(m => m.ToLine(It.Is<Client.Domain.Person>(s => s.LastName == people[0].LastName), It.IsAny<char>())).Returns("Beatty,Brian,M,Green,3/13/1970\n");
-             var report = GetByGenderPeopleReport();
+            _lineProcessor.Setup(m => m.ToLine(It.Is<GrHw.Client.Domain.Person>(s => s.LastName == people[1].LastName), It.IsAny<char>())).Returns("Smith,Sally,F,Purple,3/14/2010\n");
+            _lineProcessor.Setup(m => m.ToLine(It.Is<GrHw.Client.Domain.Person>(s=> s.LastName == people[0].LastName), It.IsAny<char>())).Returns("Beatty,Brian,M,Green,3/13/1970\n");
+            var report = GetByLastNamePeopleReport();
             var actual = report.GetReport(people, ',');
             Assert.AreEqual(expected, actual);
             VerifyAll();
         }
-
 
     }
 }
