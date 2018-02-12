@@ -5,7 +5,7 @@
     <DockerTargetOS>Windows</DockerTargetOS>
     <ProjectGuid>3628b733-37ce-42b2-95bb-f1d7437b6fff</ProjectGuid>
     <DockerLaunchBrowser>True</DockerLaunchBrowser>
-    <DockerServiceUrl>http://{ServiceIPAddress}/api/values</DockerServiceUrl>
+    <DockerServiceUrl>http://{ServiceIPAddress}/api/program</DockerServiceUrl>
     <DockerServiceName>grhw.service.webapi.person</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
