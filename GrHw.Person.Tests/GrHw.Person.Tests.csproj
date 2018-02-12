@@ -16,7 +16,16 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GrHw.Client.Business.Implementation\GrHw.Client.Business.Implementation.csproj" />
+    <ProjectReference Include="..\GrHw.Client.Business\GrHw.Client.Business.csproj" />
+    <ProjectReference Include="..\GrHw.Client.Domain\GrHw.Client.Domain.csproj" />
     <ProjectReference Include="..\GrHw.Client.Repository\GrHw.Client.Repository.csproj" />
+    <ProjectReference Include="..\GrHw.Framework.Implementation\GrHw.Framework.Implementation.csproj" />
+    <ProjectReference Include="..\GrHw.Framework\GrHw.Framework.csproj" />
+    <ProjectReference Include="..\GrHw.Server.Business.Impementation\GrHw.Server.Business.Impementation.csproj" />
+    <ProjectReference Include="..\GrHw.Server.Business\GrHw.Server.Business.csproj" />
+    <ProjectReference Include="..\GrHw.Server.Domain\GrHw.Server.Domain.csproj" />
+    <ProjectReference Include="..\GrHw.Server.Repository.Implementation\GrHw.Server.Repository.Implementation.csproj" />
+    <ProjectReference Include="..\GrHw.Server.Repository\GrHw.Server.Repository.csproj" />
     <ProjectReference Include="..\GwHw.Client.Repository.Implementation\GwHw.Client.Repository.Implementation.csproj" />
   </ItemGroup>
 

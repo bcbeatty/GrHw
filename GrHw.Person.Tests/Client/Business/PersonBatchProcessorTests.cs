@@ -7,21 +7,21 @@ using GrHw.Client.Repository;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
-namespace GrHw.Person.Tests.Business
+namespace GrHw.Person.Tests.Client.Business
 {
     [TestClass]
     public class PersonBatchProcessorTests
     {
         Mock<IFileIORepository> _fileIORepository;
         Mock<IPersonRepository> _personRepository;
-        private Mock<ILineProcessor<Client.Domain.Person>> _personLineProcessor;
+        private Mock<ILineProcessor<GrHw.Client.Domain.Person>> _personLineProcessor;
         private Mock<IPeopleReport>[] _reportsMock;
         [TestInitialize]
         public void TestInitialize()
         {
             _fileIORepository = new Mock<IFileIORepository>(MockBehavior.Strict);
             _personRepository = new Mock<IPersonRepository>(MockBehavior.Strict);
-            _personLineProcessor = new Mock<ILineProcessor<Client.Domain.Person>>(MockBehavior.Strict);
+            _personLineProcessor = new Mock<ILineProcessor<GrHw.Client.Domain.Person>>(MockBehavior.Strict);
             _reportsMock = new[]
             {
                 new Mock<IPeopleReport>(MockBehavior.Strict),
@@ -63,9 +63,9 @@ namespace GrHw.Person.Tests.Business
         public void BatchProcessor_Parse_Success()
         {
             var contents = new[] { "Beatty, Brian, M,Green, 3/14/70", "Schmore,Jolean,F,Purple,6/10/95" };
-            var expected = new List<Client.Domain.Person>
+            var expected = new List<GrHw.Client.Domain.Person>
             {
-                new Client.Domain.Person
+                new GrHw.Client.Domain.Person
                 {
                     LastName = "Beatty",
                     FirstName = "Brian",
@@ -73,7 +73,7 @@ namespace GrHw.Person.Tests.Business
                     FavoriteColor = "Green",
                     Gender = "M"
                 },
-                new Client.Domain.Person
+                new GrHw.Client.Domain.Person
                 {
                     LastName = "Schmore",
                     FirstName = "Jolean",
@@ -94,9 +94,9 @@ namespace GrHw.Person.Tests.Business
         [TestMethod]
         public void BatchProcessor_Save_Success()
         {
-            var people = new List<Client.Domain.Person>
+            var people = new List<GrHw.Client.Domain.Person>
             {
-                new Client.Domain.Person
+                new GrHw.Client.Domain.Person
                 {
                     LastName = "Beatty",
                     FirstName = "Brian",
@@ -104,7 +104,7 @@ namespace GrHw.Person.Tests.Business
                     FavoriteColor = "Green",
                     Gender = "M"
                 },
-                new Client.Domain.Person
+                new GrHw.Client.Domain.Person
                 {
                     LastName = "Schmore",
                     FirstName = "Jolean",
@@ -114,8 +114,8 @@ namespace GrHw.Person.Tests.Business
                 }
             };
 
-            _personRepository.Setup(m => m.Insert(It.Is<Client.Domain.Person>(s => s.FirstName == "Brian"))).Returns(people[0]);
-            _personRepository.Setup(m => m.Insert(It.Is<Client.Domain.Person>(s => s.Gender == "F"))).Returns(people[0]);
+            _personRepository.Setup(m => m.Insert(It.Is<GrHw.Client.Domain.Person>(s => s.FirstName == "Brian"))).Returns(people[0]);
+            _personRepository.Setup(m => m.Insert(It.Is<GrHw.Client.Domain.Person>(s => s.Gender == "F"))).Returns(people[0]);
 
             var processor = GetPersonBatchProcessor();
             processor.Save(people);
@@ -126,9 +126,9 @@ namespace GrHw.Person.Tests.Business
         [TestMethod]
         public void BatchProcessor_GetReports_Success()
         {
-            var people = new List<Client.Domain.Person>
+            var people = new List<GrHw.Client.Domain.Person>
             {
-                new Client.Domain.Person
+                new GrHw.Client.Domain.Person
                 {
                     LastName = "Beatty",
                     FirstName = "Brian",
@@ -136,7 +136,7 @@ namespace GrHw.Person.Tests.Business
                     FavoriteColor = "Green",
                     Gender = "M"
                 },
-                new Client.Domain.Person
+                new GrHw.Client.Domain.Person
                 {
                     LastName = "Schmore",
                     FirstName = "Jolean",
@@ -147,8 +147,8 @@ namespace GrHw.Person.Tests.Business
             };
             var report1 = "Beatty, Brian, M,Green, 3/14/70\nSchmore,Jolean,F,Purple,6/10/95\n";
             var report2 = "Schmore,Jolean,F,Purple,6/10/95\nBeatty, Brian, M,Green, 3/14/70\n";
-            _reportsMock[0].Setup(m => m.GetReport(It.IsAny<IList<Client.Domain.Person>>(), It.Is<char>(s => s == ','))).Returns(report1);
-            _reportsMock[1].Setup(m => m.GetReport(It.IsAny<IList<Client.Domain.Person>>(), It.Is<char>(s => s == ','))).Returns(report2);
+            _reportsMock[0].Setup(m => m.GetReport(It.IsAny<IList<GrHw.Client.Domain.Person>>(), It.Is<char>(s => s == ','))).Returns(report1);
+            _reportsMock[1].Setup(m => m.GetReport(It.IsAny<IList<GrHw.Client.Domain.Person>>(), It.Is<char>(s => s == ','))).Returns(report2);
             var expected = new List<string>
             {
                 report1,

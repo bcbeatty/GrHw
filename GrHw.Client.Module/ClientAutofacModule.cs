@@ -15,6 +15,7 @@ namespace GrHw.Client.Module
             builder.RegisterType<ByDateOfBirthPeopleReport>().AsImplementedInterfaces().Named<string>("ByDate").SingleInstance();
             builder.RegisterType<ByGenderPeopleReport>().AsImplementedInterfaces().Named<string>("ByGender").SingleInstance();
             builder.RegisterType<ByLastNamePeopleReport>().AsImplementedInterfaces().Named<string>("ByLastName").SingleInstance();         
+           
         }
       
     }

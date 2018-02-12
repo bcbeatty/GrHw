@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-using GrHw.Client.Business.Implementation;
+﻿using GrHw.Client.Business.Implementation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
 
-namespace GrHw.Person.Tests.Business
+namespace GrHw.Person.Tests.Client.Business
 {
     [TestClass]
     public class PersonLineProcessorTests
@@ -26,7 +24,7 @@ namespace GrHw.Person.Tests.Business
         public void PersonLineProcessor_ParseLine_Success()
         {
             var contents = new[] { "Beatty", "Brian", "M", "Green", "3/14/70" };
-            var expected = new Client.Domain.Person
+            var expected = new GrHw.Client.Domain.Person
             {
                 LastName = "Beatty",
                 FirstName = "Brian",
@@ -48,7 +46,7 @@ namespace GrHw.Person.Tests.Business
         public void ByLastNamePeopleReport_GetReport_Success()
         {
             var person =
-                new Client.Domain.Person
+                new GrHw.Client.Domain.Person
                 {
                     LastName = "Beatty",
                     FirstName = "Brian",

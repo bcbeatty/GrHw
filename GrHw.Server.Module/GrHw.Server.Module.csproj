@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GrHw.Server.Business.Impementation\GrHw.Server.Business.Impementation.csproj" />
+    <ProjectReference Include="..\GrHw.Server.Business\GrHw.Server.Business.csproj" />
+    <ProjectReference Include="..\GrHw.Server.Repository.Implementation\GrHw.Server.Repository.Implementation.csproj" />
+  </ItemGroup>
+
+</Project>
